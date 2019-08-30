@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>        
+        <meta charset="utf-8">
+        <meta name="Description" content="购买安全号" />
+        <title>购买安全号</title>       
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta name="App-Config" content="fullscreen=yes,userHistoryState,transition=yes"> 
+        <meta content="telephone=no" name="format-detection">
+        <link rel="stylesheet" type="text/css" href="css/caihao.css" />
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="js/flexible.js"></script>  
+		<!-- <script type="text/javascript" src="js/buynumber.js"></script>  -->
+    </head>
+    <body>
+        <div class="wrap">
+			<div class="f_buysafenum">
+				<input type="tel" id="" value="" placeholder="请输入需要安全号的手机号码" class="f_buysafenum_input"/>
+				<p class="f_buysafenum_text">安全号将与输入的手机号进行绑定，呼叫安全号手机号将接听来电。将随机分配给你安全号码。无法进行选择。<br>
+					<a href="">什么时候需要安全号？</a>
+				</p>
+				<ul class="f_buysafenum_list">
+					<li class="current">
+						<span>有效期3天</span>
+						<span class="z_buynum_price">¥1</span>
+						<b class="z_safenum_img">
+							<img src="images/sale.png" />
+						</b>
+					</li>
+					<li>
+						<span>有效期10天</span>
+						<span class="z_buynum_price">¥3</span>
+					</li>
+					<li>
+						<span>有效期30天</span>
+						<span class="z_buynum_price">¥5</span>
+					</li>
+				</ul>
+				<button id="" name="" class="f_buysafenum_pay">立即支付(<b>¥1</b>)</button>
+			</div>
+		</div> 
+		<script type="text/javascript">			
+			$(function(){
+					//购买安全号
+					$(".f_buysafenum_list li").click(function(){
+						var price = $(this).find(".z_buynum_price").text();
+						$(this).addClass('current');
+						$(this).siblings().removeClass('current');
+						$(".f_buysafenum_pay").find("b").text(price);
+					})
+			})
+			
+		</script>
+    </body>     
+</html>

@@ -1,0 +1,217 @@
+<!DOCTPYE html>
+<html>
+    <head>        
+        <meta charset="utf-8">
+        <meta name="Description" content="海牛呼唤" />
+        <title>海牛呼唤</title>       
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta name="App-Config" content="fullscreen=yes,userHistoryState,transition=yes"> 
+        <meta content="telephone=no" name="format-detection">
+        <link rel="stylesheet" type="text/css" href="css/caihao.css" /> 
+        <style type="text/css">
+            [v-cloak]{
+                display: none !important;
+            }
+			/* --ie清除--*/
+				
+		select::-ms-expand{ display: none; }
+
+		/* --火狐、谷歌清除--*/
+
+		select{
+			 appearance:none;  
+			-moz-appearance:none;  
+			-webkit-appearance:none;
+			 background: url(images/arrowbottom.png) no-repeat scroll 8rem center transparent;
+			background-size:.7rem .7rem;
+		}
+		
+		/*option样式的简单清除*/
+		option::-ms-expand{ display: none; }
+		option{
+			-moz-appearance:none; /* Firefox */
+			-webkit-appearance:none; /* Safari 和 Chrome */
+			appearance:none;
+			color:#11eaaf;
+			background-color:#fff;
+			font-size:.3rem;
+		}
+		/* --背景色字体颜色--*/
+		option:hover{
+			color:#11eaaf;
+			background-color:#fff7d5;
+			font-size:.3rem;
+		}
+
+
+        	.f_keyboardcontent{padding: .5rem;}
+            .f_keyboard{position: relative;margin-top:.5rem;}
+        	.f_keyboard input{width: 9rem;height: 1.2rem;line-height: 1.2rem;padding:.5rem .5rem .5rem 1.72rem;border-radius: .2rem;background-color: #fff;border: none;font-size: .5rem;box-shadow: 5px 5px 5px #d4e5f5;color:#000;font-weight: normal;font-family: sans-serif;}
+            .f_keyboard img{width: 1rem;position: absolute;right: .3rem;top: .32rem;}
+            .f_keyboard_call{position: fixed;bottom:.5rem;}
+            .f_keyboard_call ul{display: flex;display: -webkit-flex;flex-direction: row;flex-wrap: wrap;}
+            .f_keyboard_call ul li{width: 2.5rem;padding: .3rem 0;text-align:center;background-color: #fff;border-radius: .15rem;flex: 1 1 auto;-webkit-flex: 1 1 auto;margin-right: .5rem;margin-top: .3rem;font-size: .6rem;color: #808080;}
+            .f_keyboard_call ul li.active{background-color:#ebedee; }
+            .f_call{margin-top: .5rem;}
+            .f_call a{display: block;width:9rem;height: .6rem;line-height: .6rem;padding:.5rem 0;border-radius: .2rem;color: #fff;font-size: .6rem;text-align: center;box-shadow: 5px 5px 30px #c0e3fb;
+                  background-color: #ffdf60; 
+                  background: -webkit-linear-gradient(left, #ffdf60 , #ffdf60); /* Safari 5.1 - 6.0 */
+                  background: -o-linear-gradient(right, #ffdf60 , #ffdf60); /* Opera 11.1 - 12.0 */
+                  background: -moz-linear-gradient(right, #ffdf60 , #ffdf60); /* Firefox 3.6 - 15 */
+                  background: linear-gradient(to right, #ffdf60 , #ffdf60); /* 标准的语法 */}
+            .f_call a img{width: .8rem;margin-top: -.1rem;margin-right: .3rem;}  
+            .f_call a:hover{text-decoration: none;} 
+            .f_number95013{position: absolute;left:.3rem;font-size: .5rem;line-height: 1.2rem;font-family: sans-serif;}
+		/* 	.f_keyboard_select{width: 9rem;margin:0 auto;}
+			.f_keyboard_select select{background-color:#11eaaf;width: 9rem;height: 1.2rem;line-height: 1.2rem;border-radius: .2rem;border: none;font-size: .5rem;color:#000;font-weight: normal;font-family: sans-serif;padding-left:.3rem;} */
+			.f_select_list{width: 9rem;margin:0 auto;position: relative;z-index:0;}
+			.f_select_wapper{background-color:#11eaaf;width: 8.7rem;height: 1.2rem;line-height: 1.2rem;border-radius: .2rem;border: none;font-size: .5rem;color:#000;font-weight: normal;font-family: sans-serif;padding-left:.3rem;}
+			.arrow_bottom{width:.6rem;float:right;margin-top:.3rem;margin-right:.3rem;}
+				.arrow_top{
+				 position: absolute;
+				 top:-.4rem;
+				 right:.8rem;
+				 
+				}
+				.arrow_top:before,.top:after{
+				 position: absolute;
+				 content: '';
+				 border-top: .2rem transparent dashed;
+				 border-left: .2rem transparent dashed;
+				 border-right: .2rem transparent dashed;
+				 border-bottom: .2rem #fff solid;
+				
+				}
+				.arrow_top:before{
+				 border-bottom: .45rem #fff solid;
+				}
+				
+			.f_select_content{width: 9rem;background-color:#fff;font-size:.4rem;color:#11eaaf;margin-top:.25rem;}
+			.f_select_content li{width: 8.7rem;padding-left:.3rem;height: 1.2rem;line-height: 1.2rem;}
+			.f_select_content li.current{background-color:#fff7d5;}
+        </style>         
+        <script type="text/javascript" src="js/flexible.js"></script>
+        <script type="text/javascript" src="js/flexible_css.js"></script> 
+        <script type="text/javascript" src="js/vue.min.js"></script> 
+    </head>
+    <body>
+      <div id="keyboard" class="wrap" style="background-color: #f5f5f5;height:100%; ">         
+        	<div class="f_keyboardcontent">
+				<!-- <p class="f_keyboard_select">
+					<select>
+						<option value="0">使用9501312456呼叫</option>
+						<option value="1">使用95013789呼叫</option>
+					</select>					
+				</p> -->
+				<div class="f_select_list" style="position:relative;z-index:1;">
+					<div class="f_select_wapper" @click="showContent" v-cloak>
+						使用{{newNums}}呼叫
+						<img src="images/arrowbottom.png" class="arrow_bottom"/>
+					</div>
+					<div style="position:absolute;z-index:1;">
+						<div class="arrow_top"></div>
+						<ul class="f_select_content" v-show="isShow">
+							<li  v-for="(selectNum,index) in selectNumArray" 
+								@click="listCurrent(selectNum)"  
+								:class = "active == index ? 'current' : '' " v-cloak>
+								{{selectNum.nums}}
+							</li>
+						</ul>
+					</div>
+					
+				</div>
+        		<p class="f_keyboard" style="position:relative;z-index:0;">
+        			<span class="f_number95013">95013</span>
+                    <input type="tel" id="" name="" v-model="phone" disabled>
+                    <img src="images/closebtn.png" @click="clear"/>
+        		</p>
+            <!-- <p style="margin-top: .5rem;font-size:.5rem;color:#808080;">请直接输入对方手机号码、固话号（如:134********、010********）或海牛助手号（如:95013******）</p> -->
+                <div class="f_keyboard_call">
+                    <ul>
+                        <li  v-on:click="valClick($event)" id="1" v-cloak :class="{active:shows==1}">1</li>
+                        <li  v-on:click="valClick($event)" id="2" v-cloak :class="{active:shows==2}">2</li>
+                        <li  v-on:click="valClick($event)" id="3" v-cloak :class="{active:shows==3}">3</li>
+                        <li  v-on:click="valClick($event)" id="4" v-cloak :class="{active:shows==4}">4</li>
+                        <li  v-on:click="valClick($event)" id="5" v-cloak :class="{active:shows==5}">5</li>
+                        <li  v-on:click="valClick($event)" id="6" v-cloak :class="{active:shows==6}">6</li>
+                        <li  v-on:click="valClick($event)" id="7" v-cloak :class="{active:shows==7}">7</li>
+                        <li  v-on:click="valClick($event)" id="8" v-cloak :class="{active:shows==8}">8</li>
+                        <li  v-on:click="valClick($event)" id="9" v-cloak :class="{active:shows==9}">9</li>
+                        <li  v-on:click="valClick($event)" id="10" v-cloak :class="{active:shows==10}">*</li>
+                        <li  v-on:click="valClick($event)" id="11" v-cloak :class="{active:shows==11}">0</li>
+                        <li  v-on:click="valClick($event)" id="12" v-cloak :class="{active:shows==12}">#</li>
+                    </ul>
+                    <p class="f_call" v-on:click="call">
+                        <a :href="'tel:'+ '950133' + phone">
+                            <img src="images/tel_03.png" />拨号
+                        </a>
+                    </p>
+                </div>
+        	</div>  
+      </div>
+      <script type="text/javascript"> 
+          
+          let vm = new Vue({
+            el: "#keyboard",
+            data: {
+                inputVal: [],
+                //callNumber: [1,2,3,4,5,6,7,8,9,'*',0,'#'],
+                phone: '',
+                active: -1,
+                shows: '',
+				selectNumArray:[
+								{id:0,nums:95013123456},
+								{id:1,nums:95013123789},
+								{id:2,nums:95013123456},
+								{id:3,nums:95013123789},
+								],
+				isShow: false,
+				newNums: '95013123456'
+            },
+            methods:            
+                {
+                    valClick: function($event){
+                      let numberList = $event.target.innerHTML;
+                      let number = this.inputVal.push(numberList);
+                      this.phone = this.inputVal.join('');
+                      this.shows = $event.target.id;
+                      if(this.shows == $event.target.id){ 
+                      	let that = this;
+                      	setTimeout(function(){
+                      		that.shows = -1;
+                      	},300)
+                      }                      
+                    },                    
+                    clear: function(){
+                      let str = this.inputVal;
+                      this.inputVal= str.slice(0,str.length-1); 
+                      this.phone = this.inputVal.join('');                 
+                    },
+                    call: function(){
+                      let str = this.phone;
+                      let strIndex = str.substr(0,5);
+                      //console.log(strIndex);
+                     if(strIndex == '95013'){
+                        this.phone = str.substr(5);
+                      }else{
+                        return this.phone;
+                      }
+                    },
+					//这里是点击下拉出现的下拉内容,交互展示
+					showContent: function(){
+						this.isShow = !this.isShow;
+					},
+					//这里是点击li触发的方法
+					listCurrent: function(item){
+						let index = item.id;  //获取数组中的id
+						this.newNums = item.nums; //这里是获取值
+						this.active = index; //这里是与data中的active绑定,实现选中添加class
+						this.isShow = !this.isShow;   //这里是选中内容后,显示和隐藏的实现
+					}
+
+                }
+          })            
+      </script> 
+    </body>     
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>        
+        <meta charset="utf-8">
+        <meta name="Description" content="跳转页面" />
+        <title>跳转页面</title>       
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta name="App-Config" content="fullscreen=yes,userHistoryState,transition=yes"> 
+        <meta content="telephone=no" name="format-detection">
+        <link rel="stylesheet" type="text/css" href="css/caihao.css" />
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="js/flexible.js"></script>	
+		<style type="text/css">
+			input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+			color: #fff; 
+			font-size:.45rem;
+			} 
+			input:-moz-placeholder, textarea:-moz-placeholder { 
+			color: #fff; 
+			font-size:.45rem;
+			}  
+			input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+			color: #fff; 
+			font-size:.45rem;
+			} 
+			.sharetop{width: 10rem;}			
+			.redirect_wapper{margin:.5rem auto;width:9.5rem;padding-bottom:3rem;}
+			.redirect_title{text-align: center;font-size:.5rem;color:#49c1ff;}
+			.redirect_title:before,.redirect_title:after{display: inline-block;content:'';width:.22rem;height:.22rem;background-color: #11eaaf;border-radius:50%;vertical-align: middle;}
+			.redirect_title:before{margin-right:.2rem;}
+			.redirect_title:after{margin-left:.2rem;}
+			.redirect_text{margin-top:.5rem;font-size:.45rem;line-height: .7rem;text-align: justify;}
+			.redirect_text a{color:#ff960f;}
+			.redirect_btn{background:url(images/20190605/btnbj_02.png) no-repeat;width:10rem;height: 2.4rem;background-size:cover;position:fixed;bottom:0;margin:0 auto;text-align: center;}
+			.redirect_btn a{display: inline-block;background-color:#fff;border-radius:.5rem;width:4.2rem;padding:.4rem 0;text-align: center;margin-top:.75rem;font-size:.4rem;color:#11eaaf;}
+			.redirect_btn a.left_btn{background-color:#ff65a6;color:#fff;margin-right:.3rem;}
+			.redirect_btn a.left_btn i{color:#fcff00;}
+			.redirect_btn a.left_btn i b{font-weight: normal;font-size:.5rem;}
+			
+			/*输入手机号样式*/			
+			.redirect-show{display: block;}
+			.mask{width:100%; height:100%;position:fixed;left: 0px;top: 0px;z-index:100;background-color: rgba(0,0,0,.5);}
+			.tel-showcontent{width:10rem;position:fixed;top:50%;left: 50%;-moz-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);z-index:200;} 
+			.close{position:fixed;right:.5rem;top:0;z-index: 9999;}
+			.z-139close{position:fixed;left:1.6rem;top:3.2rem;z-index: 9999;}
+			.close img{width:1rem;}
+			.z-showcontent{background-color: #fff;border-radius:1rem;width: 8rem;margin:1.5rem auto;padding:1rem .5rem;}
+			.z-telinput{position:relative;}
+			.z-telinput img{width:.5rem;position: absolute;top:.3rem;left:.6rem;}
+			.z-telinput input{width: 7rem;padding:.22rem .5rem;height:1rem;line-height:1rem;background-color: #49c1ff;border-radius: 1rem;border:none;text-indent:2em;font-size:.5rem;}
+			#getcode{position:absolute;right:.5rem;bottom:.2rem;width:2.8rem;text-align:center;margin-left:0;background-color:#11eaaf;color:#fff;border-radius: 0;text-indent: 0;padding:0;height:1rem;line-height: 1rem;}
+			.z-submit{margin:.8rem auto 0;text-align: center;}
+			.z-submit input{text-align: center;text-indent:0;margin:0 auto;color:#fff;padding:.02rem 0;}
+			.z-only139{font-size:.5rem;text-align: center;}
+			.z-only139 span{font-size:.6rem;color:#49c1ff;display:block;margin-top:.3rem;}
+			
+			/*139号码*/
+			.redirect-139show{display: block;}
+			.f-139content{background: url(images/20190605/shareimg.png) no-repeat;width: 10rem;height: 11.76rem;background-size:contain;position:relative;}
+			.z-139text{position:absolute;top:4.5rem;left:2.5rem;}
+			.z-139text span{display: block;color:#fff;font-size:.4rem;text-align: center;}
+			.z-139text span.z-title{font-size:.7rem;}
+			.z-139text span.z-95013number{margin-top:.5rem;}
+			.z-139text span.z-texthappy{margin-top:.2rem;}
+			.z-139text span.z-texthappy b{font-weight:normal;color:#11eaaf;}
+			
+			.z-139text-one{position:absolute;top:4.5rem;left:2.68rem;}
+			.z-139text-one span.z-95013number{margin-top:.2rem;}
+			.z-139text-one span.z-texthappy{margin-top:0rem;}
+			
+			.sharebtn{width:1.8rem;margin-left:1.95rem;margin-top:.8rem;}
+			.sharearrow{width:2.5rem;position:fixed;top:0;display:none;}
+		</style>
+    </head>
+    <body>
+        <div class="wrap" style="background-color:#fff;"> 
+			<img src="images/20190605/share_01.png" class="sharetop">
+			<div class="redirect_wapper">
+				<p class="redirect_title">彩号功能介绍</p>
+				<p class="redirect_text">①沟通多样化，消息准传达，拨打对方彩号时，对方“彩号”微信公众号有提示功能，当您选择留言时，对方“彩号”会将留言内容传达给对方；<br><br>②当您不方便接听时，可以学美剧中的男女主角，录制一段“您好，我现在不方便接听电话，请在嘀的一声后，留言”；<br><br>③多通道拨打电话，话费随意组合，APP拨打适合出国在外的你，国际通话国内话费。<br><a href="">更多功能请关注彩号功能介绍</a></p>
+			</div>
+			<div class="redirect_btn">
+				<a href="" class="left_btn">我是139用户<i><b>抢</b>优先</i></a>
+				<a href="">非139用户</a>
+			</div>
+			
+		</div>	
+		
+		<!--弹窗页面  输入手机号-->
+		<div class="redirect-show" style="display: none;">
+			<div class="mask"></div>
+			<div class="tel-showcontent">
+				<div class="close">
+					<img src="images/20190605/close_03.png" />
+				</div>
+				<div class="z-showcontent">
+					<div class="z-telinput">
+						<img src="images/20190605/tel_07.png" />
+						<input type="tel" name="" id="" placeholder="请输入手机号"/>
+					</div>
+					<div class="z-telinput" style="margin-top:.5rem;">
+						<img src="images/20190605/text.png" />
+						<input type="tel" name="" id="" placeholder="请输入验证码"/>
+						<input type="submit" value="获取验证码" name="" id="getcode">
+					</div>
+					<div class="z-telinput z-submit">
+						<input type="submit" name="" id="" value="登录" >
+					</div>					
+				</div>
+				
+				<!--已经有139号码-->
+				<div class="z-showcontent">
+					<div class="z-only139">您当前登录手机号<span>13621053788</span></div>
+					<div class="z-telinput z-submit">
+						<input type="submit" name="" id="" value="确定" >
+					</div>					
+				</div>
+				
+				
+			</div>
+		</div>
+		
+		<!--139用户弹窗-->
+		<div class="redirect-139show">
+			<div class="mask"></div>
+			<div class="tel-showcontent">
+				<div class="close z-139close">
+					<img src="images/20190605/close_03.png" />
+				</div>
+				<div class="f-139content">
+					<div class="z-139text" style="display: none;">
+						<span class="z-title">恭喜</span>
+						<span class="z-95013number">您已获950+XXXXXXXX号码</span>
+						<span class="z-texthappy">独乐乐不如众乐乐</span>
+						<span class="z-texthappy">快把好消息<b>分享出去</b>吧！</span>
+						<img src="images/20190605/sharebtn_03.png"  class="sharebtn"/>
+						<img src="images/20190605/sharearrow_02.png" class="sharearrow"/>
+					</div>
+					
+					<div class="z-139text z-139text-one">
+						<span class="z-title">恭喜您</span>
+						<span class="z-95013number">您已获139老板号</span>
+						<span class="z-texthappy">优先购买权</span>
+						<span class="z-texthappy">日后使用此号登录购买即可</span>
+						<span class="z-texthappy">独乐乐不如众乐乐</span>
+						<span class="z-texthappy">快把好消息<b>分享出去</b>吧！</span>
+						<img src="images/20190605/sharebtn_03.png"  class="sharebtn" style="margin-left:1.5rem;"/>
+						<img src="images/20190605/sharearrow_02.png" class="sharearrow"/>
+					</div>
+										
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		<script type="text/javascript">  
+            var wait=60;  
+            function time(o) {  
+                    if (wait == 0) {  
+                        o.removeAttribute("disabled");            
+                        o.value="获取验证码";  
+                        o.style.background = "#11eaaf";
+                        wait = 60;  
+                    } else {  
+                        o.setAttribute("disabled", true);  
+                        o.value="" + wait + "s后重新获取"; 
+                        o.style.background = "#ccc";
+                        o.style.color = "#fff";
+                        wait--;  
+                        setTimeout(function() {  
+                            time(o)  
+                        },  
+                        1000)  
+                    }  
+                }  
+            document.getElementById("getcode").onclick=function(){time(this);} 
+        </script>
+		
+		<script type="text/javascript">
+			$(function(){
+				$(".close").click(function(){
+					$(".redirect-show").hide();
+				})
+				$(".close").click(function(){
+					$(".redirect-139show").hide();
+				})
+				$(".mask").click(function(){
+					$(".redirect-show").hide();
+				})
+				$(".mask").click(function(){
+					$(".redirect-139show").hide();
+				})
+				$(".sharebtn").click(function(){
+					$(".sharearrow").show();
+				})
+			})
+		</script>
+    </body>     
+</html>
